@@ -1,6 +1,6 @@
 # ATT VOD Cache Hit Tools
 
-Several bash scripts to test and compare various aspects of two separate DirecTV services, DirecTV Now (DTVN) and DFW.
+Several bash scripts to test and compare various aspects of two separate DirecTV services
 
 ## Contents
 1. results
