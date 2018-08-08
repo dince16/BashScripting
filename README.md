@@ -1,14 +1,24 @@
 # Bash Scripting
 
-A compilation of all basic bash scripting projects completed and in progress
+A compilation of all basic bash scripting projects completed and in progress during my time working for Integrated Digital Solutions. 
 
 ## Authors
 - Danielle Ince
 
 ## Contents
-1. Bash Assignment
-  - An assignment completed during my time at IDS that was used to get HTTP status codes and pipe them to an output file.
-2. Scripting Tutorial
-  - A series of scripts with the purpose of practicing various bash concepts\
-3. Test Scripts
-  - Scritps used to test DirecTV services details enclosed
+
+#### Bash Assignment
+An assignment completed during my time at IDS that was used to get HTTP status codes and pipe them to an output file.
+
+#### Failover Tests
+A script used during Digital Keystone failover testing.
+
+#### Scripting Tutorial
+A series of scripts written with the purpose of practicing various bash concepts.
+
+#### Test Scripts
+Scritps used to test DirecTV services details enclosed
+
+----
+
+**All necessary material and documentation for each script is available in its  directory**
