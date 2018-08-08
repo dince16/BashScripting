@@ -22,15 +22,20 @@ The purpose of this script is to parse out the timestamp found in each **Segment
 
 1. Get copy of **Master Playlist URL**.
 2. Curl the **Master Playlist URL**.
+
 ```
 curl http://dk-c3-poc-lb-001-fb272976759caab4.elb.us-east-1.amazonaws.com/cts/1.0/x/5/__start/1531312800000/__stop/1531313100000/83H3KM.m3u8
 ```
+
 3. From the output of the curl command, select one **Variant Playlist URL**
 4. Replace the last part of the **Master Playlist URL** with the last part of the **Variant Playlist URL** beginning from the `/__start/` section of the url and curl that as well
+
 ```
 curl http://dk-c3-poc-lb-001-fb272976759caab4.elb.us-east-1.amazonaws.com/cts/1.0/x/5/__start/1532520900000/__stop/1532522700000/__ext/1532535100917-1800000/H09VJR-1LIOQA-83H3KM.m3u8
 ```
+
 4. In the script you will see a section of variables that need to be updated for the specific URLs you are using.
+
 ```
 # ** NEED TO CHANGE: master playlist url used for creating the segment url **
 baseURL="http://dk-c3-poc-lb-cleveland-Virginia-747c2e2db05c346e.elb.us-east-1.amazonaws.com/cts/1.0/x/5/"
@@ -41,6 +46,7 @@ prefix="../../../../../../"
 # ** NEED TO CHANGE **
 segmentName=$prefix"H09VJR-1EZFWE-YV8YIC-"
 ```
+
 `baseURL`: the beginning part of the **Master Playlist URL** that will be used to construct the **Segment URLs**.
 
 `prefix`: the beginning part of each **Segment Short URL**.  This variable shouldn't have to change for each different URL but double check the prefix from your curl output.
