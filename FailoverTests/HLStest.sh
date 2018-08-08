@@ -6,7 +6,7 @@
 
 #STEPS TO PROCESS
 #get copy of master playlist url
-#curl master playlist url 
+#curl master playlist url
 	#get first variant playlist short url
 	#replace section from master with variant playlist info
 #curl the variant playlist
@@ -18,25 +18,26 @@
 #Check that the script call contains the correct arguments
 if [ $# -lt 3 ]; then
 	echo "You did not list enough arguments"
-	echo "Usage: sh HLStest.sh <URL> <output filename> <request timing>"
+	echo "Usage: ./HLSTest.sh <VARIANT_PLAYLIST_URL> <OUTPUT_NAME> <REQUEST_TIMING>>"
 	exit 1
 fi
 
-out="$2".csv
-#NEED TO CHANGE: master playlist url used for creating the segment url
+# ** NEED TO CHANGE: master playlist url used for creating the segment url **
 baseURL="http://dk-c3-poc-lb-cleveland-Virginia-747c2e2db05c346e.elb.us-east-1.amazonaws.com/cts/1.0/x/5/"
 
-#NEED TO CHANGE: section of variant playlist url that denotes how many directories to go up to create the segment url
+# ** NEED TO CHANGE: section of variant playlist url that denotes how many directories to go up to create the segment url **
 prefix="../../../../../../"
-#NEED TO CHANGE
+
+# ** NEED TO CHANGE **
 segmentName=$prefix"H09VJR-1EZFWE-YV8YIC-"
 
+out="$2".csv
 variant=""
 discontinutiy=""
-#dis=()
 prev=""
 dis=false
 
+# calculates the appropriate gap of time in between the segment timestamps
 correct_gap=$(curl -s $1 | grep -m 1 "#EXTINF:")
 correct_gap=$(awk -F "#EXTINF:" '{sub(/ .*/,"",$2);print $2}' <<<$correct_gap | sed 's/,//')
 correct_gap=$(($( printf "%.0f" $correct_gap ) * 1000))
@@ -45,11 +46,11 @@ echo Timestamp , Duration , Correct Duration , Segment Status Code >> $out
 
 while true
 do
-	
 
-	#removes all lines containing '#'
+	#removes all lines containing '#EXTINF'
 	curl -s $1 | sed "/#EXTINF/d" > parsedFile
 
+	# check if the current line contains the DISCONTINUITY tag
 	if echo parsedFile | grep -q "#EXT-X-DISCONTINUITY";
 		then
 		echo discontinuity
@@ -102,6 +103,6 @@ do
 		fi
 	done < parsedFile
 
+	sleep $3
 
 done
-
